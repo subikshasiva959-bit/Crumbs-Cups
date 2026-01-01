@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="ChatGPT Image Dec 31, 2025, 10_14_55 PM.png">
+  <title>Contact Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #ff4081;
+      --secondary: #0d47a1;
+      --bg-gradient: linear-gradient(135deg, #fffaf4, #ffe1ec);
+      --card-bg: #fff;
+      --text-dark: #333;
+      --border-color: #ffccd9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Times New Roman', Times, serif;
+      background: var(--bg-gradient);
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden; /* prevent scrolling */
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    h1 {
+      font-size: 48px;
+      color: var(--primary);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .contact-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .top-row, .bottom-row {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .bottom-row {
+      margin-top: -10px; /* slight overlap for catchy look */
+    }
+
+    .info-card {
+      background: var(--card-bg);
+      padding: 25px 20px;
+      border-radius: 18px;
+      border: 2px solid var(--border-color);
+      min-width: 180px;
+      flex: 1 1 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.18);
+      border-color: var(--primary);
+    }
+
+    .info-card span {
+      font-size: 36px;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .info-card p {
+      font-size: 16px;
+      color: var(--text-dark);
+      margin: 0;
+    }
+
+    .info-card strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .info-card a {
+      color: var(--secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .info-card a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 60px;
+  background: linear-gradient(135deg, #fff0ec, #ffeaea);
+  border-bottom: 1px solid #fff0ec;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+  top: 0; 
+  z-index: 1000;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.navbar h1 {
+  font-size: 34px;
+  font-weight: bold;
+  color: #d66b6b;
+  margin: 0;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(214,107,107,0.3);
+  transition: transform 0.3s ease;
+   
+}
+
+.navbar h1:hover {
+  transform: scale(1.05);
+}
+
+.navbar-icons a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #7c6a61;
+  font-size: 17px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.navbar-icons a:hover {
+  color: #fff;
+  background-color: #d66b6b;
+  box-shadow: none;
+}
+
+.navbar-icons a i {
+  margin-right: 6px;
+  color: #d66b6b;
+  transition: transform 0.3s ease;
+}
+
+.navbar-icons a:hover i {
+  color: #fff;
+  transform: rotate(-15deg) scale(1.2);
+}
+
+    @media (max-width: 650px) {
+      h1 {
+        font-size: 36px;
+        margin-bottom: 25px;
+      }
+      .top-row, .bottom-row {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .info-card {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <h1>Crumbs & Cups</h1>
+    <div class="navbar-icons">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="track-order.html" ><i class="fas fa-location-dot"></i> Track Order</a>
+      <a href="Cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+      <a href="Contact.html" target=""><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+  </div>
+
+  <h1>Contact Us</h1>
+
+  <div class="contact-layout">
+    
+    <!-- Top row (3 cards) -->
+    <div class="top-row">
+      <div class="info-card">
+        <span>👤</span>
+        <p><strong>Owner:</strong> John doe</p>
+      </div>
+
+      <div class="info-card">
+        <span>📞</span>
+        <p><strong>Phone:</strong> <a href="tel:+919876543210">+91 98765 43210</a></p>
+      </div>
+
+      <div class="info-card">
+        <span>📧</span>
+        <p><strong>Email:</strong> <a href="mailto:someone@example.com">someone@example.com</a></p>
+      </div>
+    </div>
+
+    <!-- Bottom row (2 centered cards) -->
+    <div class="bottom-row">
+      <div class="info-card">
+        <span>📍</span>
+        <p><strong>Address:</strong> 123, Sweet Street, Cake City, India</p>
+      </div>
+
+      <div class="info-card">
+        <span>⏰</span>
+        <p><strong>Hours:</strong> Mon – Sat, 9:00 AM – 8:00 PM</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

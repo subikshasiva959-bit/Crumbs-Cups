@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Admin | Crumbs & Cups</title>
+  <link rel="icon" href="ChatGPT Image Dec 31, 2025, 10_14_55 PM.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Times New Roman', Times, serif;
+      background: #fff0ec;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 20px;
+      color: #d66b6b;
+      margin: 0;
+    }
+
+    table {
+      width: 100%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      font-size: 13px;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+      vertical-align: top;
+    }
+
+    th {
+      background: #ffeaea;
+      color: #333;
+      font-size: 14px;
+    }
+
+    .items {
+      text-align: left;
+    }
+
+    select {
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 13px;
+    }
+
+    .Pending { color: orange; font-weight: bold; }
+    .Dispatched { color: #1e90ff; font-weight: bold; }
+    .Delivered { color: green; font-weight: bold; }
+    
+
+.navbar {
+  display: flex;
+  justify-content: space-between; /* ✅ LEFT logo, RIGHT links */
+  align-items: center;
+  padding: 18px 60px;
+  background: linear-gradient(135deg, #fff0ec, #ffeaea);
+  border-bottom: 1px solid #fff0ec;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+
+
+
+.navbar h1 {
+  font-size: 34px;
+  font-weight: bold;
+  color: #d66b6b;
+  margin: 0;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(214,107,107,0.3);
+  transition: transform 0.3s ease;
+}
+
+.navbar h1:hover {
+  transform: scale(1.05);
+}
+
+    .navbar-icons a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #7c6a61;
+  font-size: 17px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.navbar-icons {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-icons a:hover {
+  color: #fff;
+  background-color: #d66b6b;
+  box-shadow: none;
+}
+
+.navbar-icons a i {
+  margin-right: 6px;
+  color: #d66b6b;
+  transition: transform 0.3s ease;
+}
+
+.navbar-icons a:hover i {
+  color: #fff;
+  transform: rotate(-15deg) scale(1.2);
+}
+.Cancelled {
+  color: red;
+  font-weight: bold;
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="navbar">
+     <h1>Crumbs & Cups</h1>
+    <div class="navbar-icons">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="javascript:void(0)" onclick="logout()" style="
+  margin-left: 25px;
+  text-decoration: none;
+  color: #7c6a61;
+  font-size: 17px;
+  font-weight: 500;
+">
+  <i class="fas fa-right-from-bracket"></i> Logout
+</a>
+
+    </div>
+  </div>
+
+<h1>📦 Admin – Orders Dashboard</h1>
+
+<button onclick="exportToExcel()" style="
+  margin: 15px;
+  padding: 10px 18px;
+  background:#d66b6b;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:14px;">
+  📊 Export Orders (Excel)
+</button>
+
+
+<table id="ordersTable">
+  <tr>
+    <th>Order ID</th>
+    <th>Customer</th>
+    <th>Phone</th>
+    <th>Address</th>
+    <th>Items</th>
+    <th>Total (₹)</th>
+    <th>Status</th>
+    <th>Ordered At</th>
+    <th>Dispatched At</th>
+    <th>Delivered At</th>
+    <th>Cancelled At</th>
+  </tr>
+</table>
+
+<p id="emptyMsg" style="text-align:center; display:none;">No orders found</p>
+
+<script>
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+let table = document.getElementById("ordersTable");
+
+if (orders.length === 0) {
+  document.getElementById("emptyMsg").style.display = "block";
+} else {
+  orders.forEach((order, index) => {
+    let row = table.insertRow();
+
+    let itemsHTML = "";
+    order.items.forEach(item => {
+      itemsHTML += `${item.name} (x${item.quantity})<br>`;
+    });
+
+    row.innerHTML = `
+      <td>${order.orderId}</td>
+      <td>${order.customerName}</td>
+      <td>${order.phone}</td>
+      <td>${order.address}</td>
+      <td class="items">${itemsHTML}</td>
+      <td>₹${order.total}</td>
+     <td>
+  ${
+    order.status === "Cancelled"
+      ? `<span class="Cancelled">Cancelled</span>`
+      : `
+        <select class="${order.status}" onchange="updateStatus(${index}, this.value)">
+          <option value="Pending" ${order.status === "Pending" ? "selected" : ""}>Pending</option>
+          <option value="Dispatched" ${order.status === "Dispatched" ? "selected" : ""}>Dispatched</option>
+          <option value="Delivered" ${order.status === "Delivered" ? "selected" : ""}>Delivered</option>
+        </select>
+      `
+  }
+</td>
+
+      <td>${order.placedAt || "N/A"}</td>
+      <td>${order.dispatchedAt || "N/A"}</td>
+      <td>${order.deliveredAt || "N/A"}</td>
+      <td>${order.cancelledAt || "N/A"}</td>
+    `;
+  });
+}
+
+function updateStatus(index, newStatus) {
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  // 🚫 LOCK CANCELLED ORDERS
+  if (orders[index].status === "Cancelled") {
+    alert("Cancelled orders cannot be modified");
+    return;
+  }
+
+  let now = new Date().toLocaleString();
+  orders[index].status = newStatus;
+
+  if (newStatus === "Dispatched") {
+    orders[index].dispatchedAt = now;
+  }
+  if (newStatus === "Delivered") {
+    orders[index].deliveredAt = now;
+  }
+
+  localStorage.setItem("orders", JSON.stringify(orders));
+  location.reload();
+}
+</script>
+<script>
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  window.location.href = "login.html";
+}
+</script>
+<script>
+function exportToExcel() {
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  if (orders.length === 0) {
+    alert("No orders to export");
+    return;
+  }
+
+  // Format date safely for Excel
+  const formatDate = (d) => d ? new Date(d).toLocaleString("en-GB") : "";
+
+  let excelData = orders.map(o => ({
+    "Order ID": o.orderId,
+    "Customer": o.customerName,
+    "Phone": o.phone,              // stays normal (no 1E+09)
+    "Address": o.address,
+    "Items": o.items.map(i => `${i.name} (x${i.quantity})`).join(", "),
+    "Total": o.total,
+    "Status": o.status,
+    "Ordered At": formatDate(o.placedAt),
+    "Dispatched At": formatDate(o.dispatchedAt),
+    "Delivered At": formatDate(o.deliveredAt),
+    "Cancelled At": formatDate(o.cancelledAt)
+  }));
+
+  // Create worksheet
+  const worksheet = XLSX.utils.json_to_sheet(excelData);
+
+  // Auto column width
+  worksheet["!cols"] = Object.keys(excelData[0]).map(() => ({ wch: 22 }));
+
+  // Create workbook
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Orders");
+
+  // Download
+  XLSX.writeFile(workbook, "SweetCravings_Orders.xlsx");
+}
+</script>
+
+</body>
+</html>

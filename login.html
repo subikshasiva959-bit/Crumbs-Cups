@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login | Crumbs & Cups</title>
+  <meta charset="UTF-8">
+  <link rel="icon" href="ChatGPT Image Dec 31, 2025, 10_14_55 PM.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+        body {
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+  background: #fff0ec;
+}
+
+    .box {
+      width: 360px;
+      border: 1px solid #ddd;
+      padding: 25px;
+      border-radius: 6px;
+    }
+
+    h2 {
+      font-weight: normal;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px;
+      border-radius: 4px;
+      border: 1px solid #a6a6a6;
+    }
+
+    button {
+      width: 100%;
+      background: #f0c14b;
+      border: 1px solid #a88734;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .link {
+      margin-top: 15px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 26px;
+      color: #d66b6b;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+        .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 60px;
+  background: linear-gradient(135deg, #fff0ec, #ffeaea);
+  border-bottom: 1px solid #fff0ec;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+  top: 0; 
+  z-index: 1000;
+}
+
+.navbar h1 {
+  font-size: 34px;
+  font-weight: bold;
+  color: #d66b6b;
+  margin: 0;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(214,107,107,0.3);
+  transition: transform 0.3s ease;
+}
+
+.navbar h1:hover {
+  transform: scale(1.05);
+}
+
+.navbar-icons a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #7c6a61;
+  font-size: 17px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.navbar-icons a:hover {
+  color: #fff;
+  background-color: #d66b6b;
+  box-shadow: none;
+}
+
+.navbar-icons a i {
+  margin-right: 6px;
+  color: #d66b6b;
+  transition: transform 0.3s ease;
+}
+
+.navbar-icons a:hover i {
+  color: #fff;
+  transform: rotate(-15deg) scale(1.2);
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 90px); /* adjusts for navbar height */
+}
+
+  </style>
+</head>
+
+<body>
+<div class="navbar">
+    <h1>Crumbs & Cups</h1>
+    <div class="navbar-icons">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="Cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+      <a href="Contact.html" target=""><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+</div>
+<div class="auth-container">
+  <div class="box">
+    <div class="logo">Crumbs & Cups</div>
+
+    <!-- ===== SIGN IN ===== -->
+    <div id="loginBox">
+      <h2>Sign In</h2>
+
+      <label>Email</label>
+      <input type="email" id="loginEmail">
+
+      <label>Password</label>
+      <input type="password" id="loginPassword">
+
+      <button onclick="login()">Sign In</button>
+
+      <div class="link">
+        New user?
+        <a href="#" onclick="showSignup()">Create account</a>
+      </div>
+    </div>
+    
+    <!-- ===== SIGN UP ===== -->
+    <div id="signupBox" class="hidden">
+      <h2>Create Account</h2>
+
+      <label>Your name</label>
+      <input type="text" id="signupName">
+
+      <label>Email</label>
+      <input type="email" id="signupEmail">
+
+      <label>Password</label>
+      <input type="password" id="signupPassword">
+
+      <button onclick="signup()">Create Account</button>
+
+      <div class="link">
+        Already have an account?
+        <a href="#" onclick="showLogin()">Sign in</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ===== LOGIN ===== */
+function login() {
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value.trim();
+
+  if (!email || !password) {
+    alert("Enter email and password");
+    return;
+  }
+
+  // ADMIN
+  if (email === "admin@sweetcravings.com" && password === "admin123") {
+    localStorage.setItem("loggedInUser", JSON.stringify({
+      email, role: "admin"
+    }));
+    location.href = "admin.html";
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  let user = users.find(u => u.email === email && u.password === password);
+
+  if (!user) {
+    alert("Invalid login details");
+    return;
+  }
+
+  localStorage.setItem("loggedInUser", JSON.stringify(user));
+  location.href = "index.html";
+}
+
+/* ===== SIGN UP ===== */
+function signup() {
+  const name = document.getElementById("signupName").value.trim();
+  const email = document.getElementById("signupEmail").value.trim();
+  const password = document.getElementById("signupPassword").value.trim();
+
+  if (!name || !email || !password) {
+    alert("Fill all fields");
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  if (users.find(u => u.email === email)) {
+    alert("Account already exists");
+    return;
+  }
+
+  let newUser = { name, email, password, role: "user" };
+  users.push(newUser);
+
+  localStorage.setItem("users", JSON.stringify(users));
+  localStorage.setItem("loggedInUser", JSON.stringify(newUser));
+
+  location.href = "index.html";
+}
+
+/* ===== TOGGLE ===== */
+function showSignup() {
+  document.getElementById("loginBox").classList.add("hidden");
+  document.getElementById("signupBox").classList.remove("hidden");
+}
+
+function showLogin() {
+  document.getElementById("signupBox").classList.add("hidden");
+  document.getElementById("loginBox").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>

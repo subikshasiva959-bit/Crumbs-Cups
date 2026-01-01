@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="ChatGPT Image Dec 31, 2025, 10_14_55 PM.png">
+  <title>Cookies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family:'Times New Roman', Times, serif;
+      background-color: #fffaf8;
+    }
+
+    @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+    }
+
+    body {
+    animation: fadeIn 0.8s ease-in-out;
+    }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 60px;
+  background: linear-gradient(135deg, #fff0ec, #ffeaea);
+  border-bottom: 2px solid #f3d8d2;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+  line-height: 0.01;
+  top: 0; 
+  z-index: 1000;
+}
+
+.navbar h1 {
+  font-size: 34px;
+  font-weight: bold;
+  color: #d66b6b;
+  margin: 30px;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(214,107,107,0.3);
+  transition: transform 0.3s ease;
+}
+
+.navbar h1:hover {
+  transform: scale(1.05);
+}
+
+.navbar-icons a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #7c6a61;
+  font-size: 17px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.navbar-icons a:hover {
+  color: #fff;
+  background-color: #d66b6b;
+  box-shadow: 0 3px 8px rgba(214,107,107,0.3);
+}
+
+.navbar-icons a i {
+  margin-right: 6px;
+  color: #d66b6b;
+  transition: transform 0.3s ease;
+}
+
+.navbar-icons a:hover i {
+  color: #fff;
+  transform: rotate(-15deg) scale(1.2);
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <h1>Crumbs & Cups</h1>
+    <div class="navbar-icons">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="track-order.html" ><i class="fas fa-location-dot"></i> Track Order</a>
+      <a href="Cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+      <a href="Contact.html" target=""><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+  </div>
+
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #ffeaea;
+      background-size: cover;
+      margin: 0;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    h1, p, q, b, i {
+      color: #111010;
+    }
+
+    .cakes-section {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      justify-content: center;
+      gap: 20px;
+      row-gap: 40px;
+      padding: 10px;
+      width: 1500px;
+      margin: 0 auto;
+      margin: 20px auto 0;
+    }
+
+    .item-card {
+      background-color: #ffffff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      max-width: 280px;
+      width: 350px;
+      padding: 10px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    .item-card:hover {
+      transform: scale(1.02);
+    }
+
+    .item-card img {
+      width: 260px;
+      height: 340px;
+      border-radius: 15px;
+      border: 5px solid #eea4ae;
+      display: block;
+      object-fit: center;
+    }
+
+    .item-content {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .item-content h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .item-content p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .spacer-row {
+      grid-column: 1 / -1;
+      height: 7px; 
+    }
+
+    .spacer {
+      height: 30px;
+    }
+  </style>
+  <br>
+  <div style="text-align: center; margin-top: 5px;">
+  <div style="display: inline-block; max-width: 820px; background-color:#fff0ec; padding:35px 80px; border-radius:20px;">
+    <h3 style="color:#d66b6b; margin-bottom: 10px;">Sweet baked treat</h3>
+    <p style="margin: 0; color:#121110; font-size:16px; line-height:1.2;">
+      Cookies are sweet baked treats enjoyed around the world.
+      They come in many flavors and textures.
+      From soft and chewy to crisp and crunchy.
+    </p>
+  </div>
+</br>
+</div>
+
+  
+  <div class="cakes-section">
+    <div class="item-card">
+      <img src="cookie-types-peanut-butter-cookies.webp" alt="Peanut Butter">
+      <div class="item-content">
+        <h3>Peanut Butter Cookie</h3>
+        <p>Soft and chewy with nutty flavor with a fork crisscross on top.</p>
+        <br>
+        <form method="GET" action="#cart">
+          <input type="hidden" name="cookie">
+          <input type="hidden" name="price">
+          <center>
+          <button type="button" onclick="addToCart('Peanut Butter Cookie','cookie-types-peanut-butter-cookies.webp',120)">Add to Cart</button>
+          <br>
+          <br>
+          <button type="button" onclick="buyNow('Peanut Butter Cookie','cookie-types-peanut-butter-cookies.webp',120)">Buy Now</button>
+          </center> 
+        </form>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="cookie-types-shortbread-cookies.webp" alt="Coconut Cake">
+      <div class="item-content">
+        <h3>Short Bread Cookie</h3>
+        <p>Buttery and crumbly with melt-in-your-mouth texture overly sweet.</p>
+        <br>
+        <form method="GET" action="#cart">
+          <input type="hidden" name="cookie">
+          <input type="hidden" name="price">
+          <center>
+          <button type="button" onclick="addToCart('Short Bread Cookie','cookie-types-shortbread-cookies.webp',80)">Add to Cart</button>
+          <br>
+          <br>
+          <button type="button" onclick="buyNow('Short Bread Cookie','cookie-types-shortbread-cookies.webp',80)">Buy Now</button>
+          </center>
+        </form>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="cookie-types-crinkle-cookies.webp" alt="Lemon Cake">
+      <div class="item-content">
+        <h3>Crinkle Cookie</h3>
+        <p>Soft and fudgy inside with a crackled balance of chewy and sweet.</p>
+        <br>
+        <form method="GET" action="#cart">
+          <input type="hidden" name="cookie">
+          <input type="hidden" name="price">
+          <center>
+          <button type="button" onclick="addToCart('Crinkle Cookie','cookie-types-crinkle-cookies.webp',180)">Add to Cart</button>
+          <br>
+          <br>
+          <button type="button" onclick="buyNow('Crinkle Cookie','cookie-types-crinkle-cookies.webp',180)">Buy Now</button>
+          </center>
+        </form>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="cookie-types-sugar-cookies.webp" alt="Fruit Cake">
+      <div class="item-content">
+        <h3>Sugar Cookie</h3>
+        <p>Light, soft, and sweet with a smooth texture with icing and sprinkles.</p>
+        <br>
+        <form method="GET" action="#cart">
+          <input type="hidden" name="cookie">
+          <input type="hidden" name="price">
+          <center>
+          <button type="button" onclick="addToCart('Sugar Cookie','cookie-types-sugar-cookies.webp',210)">Add to Cart</button>
+          <br>
+          <br>
+          <button type="button"  onclick="buyNow('Sugar Cookie','cookie-types-sugar-cookies.webp',210)">Buy Now</button>
+          </center>
+        </form>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="cookie-types-butter-cookies.webp" alt="Sponge Cake">
+      <div class="item-content">
+        <h3>Butter Cookie</h3>
+        <p>Crisp yet tender with rich buttery taste into decorative designs.</p>
+        <br>
+        <form method="GET" action="#cart">
+          <input type="hidden" name="cookie">
+          <input type="hidden" name="price">
+          <center>
+          <button type="button" onclick="addToCart('Butter Cookie','cookie-types-butter-cookies.webp',160)">Add to Cart</button>
+          <br>
+          <br>
+          <button type="button" onclick="buyNow('Butter Cookie','cookie-types-butter-cookies.webp',160)">Buy Now</button>
+          </center>
+        </form>
+      </div>
+    </div>
+
+    <style>    
+    .spacer {
+      height: 20px;
+    }
+    </style>
+
+    <div class="item-card">
+      <img src="cookie-types-snickerdoodle-cookies.webp" alt="Red Velvet">
+      <div class="item-content">
+        <h3>Snicker Doodle Cookie</h3>
+        <p>Soft and chewy with cinnamon-sugar coating from cream of tartar.</p>
+        <br>
+        <form method="GET" action="#cart">
+          <input type="hidden" name="cookie">
+          <input type="hidden" name="price">
+          <center>
+          <button type="button" onclick="addToCart('Snicker Doodle Cookie','cookie-types-snickerdoodle-cookies.webp',170)">Add to Cart</button>
+          <br>
+          <br>
+          <button type="button" onclick="buyNow('Snicker Doodle Cookie','cookie-types-snickerdoodle-cookies.webp',170)">Buy Now</button>
+          </center>
+        </form>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="cookie-types-gingerbread-cookies.webp" alt="Coconut Cake">
+      <div class="item-content">
+        <h3>Ginger Bread Cookie</h3>
+        <p>Spiced with ginger, cinnamon warm, cozy flavor yet slightly chewy.</p>
+        <br>
+        <form method="GET" action="#cart">
+          <input type="hidden" name="cookie">
+          <input type="hidden" name="price">
+          <center>
+          <button type="button" onclick="addToCart('Ginger Bread Cookie','cookie-types-gingerbread-cookies.webp',220)">Add to Cart</button>
+          <br>
+          <br>
+          <button type="button" onclick="buyNow('Ginger Bread Cookie','cookie-types-gingerbread-cookies.webp',220)">Buy Now</button>
+          </center>
+        </form>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="cookie-types-icebox-cookies.webp" alt="Lemon Cake">
+      <div class="item-content">
+        <h3>Icebox Cookie</h3>
+        <p>Made from chilled dough sliced and crisp edges with tender center.</p>
+        <br>
+        <form method="GET" action="#cart">
+          <input type="hidden" name="cookie">
+          <input type="hidden" name="price">
+          <center>
+          <button type="button" onclick="addToCart('Icebox Cookie','cookie-types-icebox-cookies.webp',130)">Add to Cart</button>
+          <br>
+          <br>
+          <button type="button" onclick="buyNow('Icebox Cookie','cookie-types-icebox-cookies.webp',130)">Buy Now</button>
+          </center>
+        </form>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="cookie-types-merinque-cookies.webp" alt="Fruit Cake">
+      <div class="item-content">
+        <h3>Merinque Cookie</h3>
+        <p>Light, airy  with a delicate sweet from whipped egg whites and sugar.</p>
+        <br>
+        <form method="GET" action="#cart">
+          <input type="hidden" name="cookie">
+          <input type="hidden" name="price">
+          <center>
+          <button type="button" onclick="addToCart('Merinque Cookie','cookie-types-merinque-cookies.webp',280)">Add to Cart</button>
+          <br>
+          <br>
+          <button type="button"  onclick="buyNow('Merinque Cookie','cookie-types-merinque-cookies.webp',280)">Buy Now</button>
+          </center>
+        </form>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="cookie-types-snowball-cookies.webp" alt="Sponge Cake">
+      <div class="item-content">
+        <h3>Snowball Cookie</h3>
+        <p>Buttery and nutty, rolled in powdered sugar with a sweet snowy finish.<p>
+        <br>
+        <form method="GET" action="#cart">
+          <input type="hidden" name="cookie">
+          <input type="hidden" name="price">
+          <center>
+          <button type="button" onclick="addToCart('Snowball Cookie','cookie-types-snowball-cookies.webp',310)">Add to Cart</button>
+          <br>
+          <br>
+          <button type="button" onclick="buyNow('Snowball Cookie','cookie-types-snowball-cookies.webp',310)">Buy Now</button>
+          </center>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <center>
+    <div style="max-width: 700px; margin-bottom: 25px;">
+      <h3 style="color:#d66b6b; margin-bottom: 15px; font-size:24px; font-weight:bold; letter-spacing:1px;">Stay Connected</h3>
+      <p style="margin:5px 0; font-size:16px; color:#444; line-height:1.6;">
+        Have questions or just want to say hello?
+        <br> We would love to hear from you ! </br>
+      </p>
+
+      <p style="margin:8px 0; font-size:15px; color:#333;">
+        <i class="fas fa-envelope" style="margin-right:8px; color:#d66b6b;"></i>
+        <a href="mailto:info@animalworld.org" style="color:#444; text-decoration:none;"> john.doe@example.com</a>
+      </p>
+      <p style="margin:8px 0; font-size:15px; color:#333;">
+        <i class="fas fa-phone" style="margin-right:8px; color:#d66b6b;"></i>
+        +91 98765 43210
+      </p>
+      <p style="margin:8px 0; font-size:15px; color:#333;">
+        <i class="fas fa-map-marker-alt" style="margin-right:8px; color:#d66b6b;"></i>
+        123, Sweet Street, Cake City, India
+      </p>
+    </div>
+
+    <center>
+    <div style="margin:20px 0;">
+      <a href="#" style="margin:0 10px; color:#d66b6b; font-size:22px;"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" style="margin:0 10px; color:#d66b6b; font-size:22px;"><i class="fab fa-instagram"></i></a>
+      <a href="#" style="margin:0 10px; color:#d66b6b; font-size:22px;"><i class="fab fa-twitter"></i></a>
+      <a href="#" style="margin:0 10px; color:#d66b6b; font-size:22px;"><i class="fab fa-youtube"></i></a>
+    </div>
+    </center>
+
+   <!-- Add to Cart Popup Modal -->
+<div id="cart-modal-overlay">
+  <div id="cart-modal">
+    <i class="fas fa-check-circle"></i>
+    <h3>Added to Cart</h3>
+    <p id="modal-message">Item added to cart</p>
+
+    <div class="modal-buttons">
+      <button onclick="closeCartModal()">Continue Shopping</button>
+      <a href="Cart.html">Go to Cart</a>
+    </div>
+  </div>
+</div>
+
+<style>
+#cart-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 3000;
+}
+
+#cart-modal-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#cart-modal {
+  background: #fff0ec;
+  padding: 30px 35px;
+  border-radius: 20px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+#cart-modal i {
+  font-size: 45px;
+  color: #d66b6b;
+}
+
+#cart-modal h3 {
+  color: #d66b6b;
+  margin: 10px 0;
+}
+
+#cart-modal p {
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.modal-buttons button,
+.modal-buttons a {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.modal-buttons button {
+  background: #f3d8d2;
+  color: #444;
+}
+
+.modal-buttons a {
+  background: #d66b6b;
+  color: #fff;
+}
+
+.modal-buttons button:hover {
+  background: #e9c1b9;
+}
+
+.modal-buttons a:hover {
+  background: #c45555;
+}
+</style>
+
+<script>
+function addToCart(name, image, price) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  let item = cart.find(i => i.name === name);
+
+  if (item) {
+    item.quantity += 1;
+  } else {
+    cart.push({ name, image, price, quantity: 1 });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  showCartModal(name);
+}
+
+function showCartModal(itemName) {
+  document.getElementById("modal-message").textContent =
+    itemName + " has been added to your cart ";
+
+  document.getElementById("cart-modal-overlay").classList.add("show");
+}
+
+function closeCartModal() {
+  document.getElementById("cart-modal-overlay").classList.remove("show");
+}
+</script>
+
+</body>
+</html>

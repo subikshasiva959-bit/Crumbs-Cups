@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Track Order | Crumbs & Cups</title>
+  <link rel="icon" href="ChatGPT Image Dec 31, 2025, 10_14_55 PM.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Times New Roman', Times, serif;
+      background: #fff0ec;
+    }
+
+    .container {
+      width: 420px;
+      margin: 80px auto;
+      background: #fff;
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      text-align: center;
+    }
+
+    h2 {
+      color: #d66b6b;
+      margin-bottom: 25px;
+    }
+
+    .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 60px;
+  background: linear-gradient(135deg, #fff0ec, #ffeaea);
+  border-bottom: 1px solid #fff0ec;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+  top: 0; 
+  z-index: 1000;
+}
+
+.navbar h1 {
+  font-size: 34px;
+  font-weight: bold;
+  color: #d66b6b;
+  margin: 0;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(214,107,107,0.3);
+  transition: transform 0.3s ease;
+}
+
+.navbar h1:hover {
+  transform: scale(1.05);
+}
+
+.navbar-icons a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #7c6a61;
+  font-size: 17px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.navbar-icons a:hover {
+  color: #fff;
+  background-color: #d66b6b;
+  box-shadow: none;
+}
+
+.navbar-icons a i {
+  margin-right: 6px;
+  color: #d66b6b;
+  transition: transform 0.3s ease;
+}
+
+.navbar-icons a:hover i {
+  color: #fff;
+  transform: rotate(-15deg) scale(1.2);
+}
+
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 18px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #d66b6b;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #b55555;
+    }
+
+    .result {
+      margin-top: 25px;
+      font-size: 16px;
+      display: none;
+      text-align: left;
+    }
+
+    .status {
+      font-weight: bold;
+    }
+
+    .modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.modal-actions button {
+  width: 120px;
+  padding: 12px 0;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.btn-yes {
+  background: #d66b6b;
+}
+
+.btn-yes:hover {
+  background: #b55555;
+}
+
+.btn-no {
+  background: #d66b6b;
+}
+
+.btn-no:hover {
+  background: #888;
+}
+
+
+    .Pending, .Ordered { color: orange; }
+    .Dispatched { color: #1e90ff; }
+    .Delivered { color: green; }
+    .Cancelled { color: red; }
+  </style>
+</head>
+
+<body>
+    <div class="navbar">
+    <h1>Crumbs & Cups</h1>
+    <div class="navbar-icons">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="track-order.html" ><i class="fas fa-location-dot"></i> Track Order</a>
+      <a href="Cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+      <a href="Contact.html" target=""><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+  </div>
+
+<div class="container">
+  <h2>Track Your Order</h2>
+
+  <input type="text" id="orderId" placeholder="Enter Order ID">
+  <input type="text" id="phone" placeholder="Enter Phone Number">
+
+  <button onclick="trackOrder()">Track Order</button>
+
+  <div id="result" class="result"></div>
+</div>
+<!-- Cancel Confirmation Modal -->
+<div id="confirmModal" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+">
+  <div style="
+    background:#fff;
+    padding:25px 30px;
+    border-radius:12px;
+    text-align:center;
+    width:320px;
+  ">
+    <h3>Cancel Order?</h3>
+    <p>Are you sure you want to cancel this order?</p>
+
+    <div class="modal-actions">
+  <button class="btn-yes" onclick="confirmCancel()">Yes</button>
+  <button class="btn-no" onclick="closeModal()">No</button>
+</div>
+
+  </div>
+</div>
+
+<script>
+function trackOrder() {
+  let orderId = document.getElementById("orderId").value.trim();
+  let phone = document.getElementById("phone").value.trim();
+  let resultDiv = document.getElementById("result");
+
+  resultDiv.style.display = "block";
+
+  if (!orderId || !phone) {
+    resultDiv.innerHTML = "<p style='color:red;'>Please enter Order ID and Phone Number</p>";
+    return;
+  }
+
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  if (orders.length === 0) {
+    resultDiv.innerHTML = "<p style='color:red;'>No orders found</p>";
+    return;
+  }
+
+  // 🔑 IMPORTANT FIX: compare phone as STRING
+  let order = orders.find(o =>
+    o.orderId === orderId && o.phone.toString() === phone
+  );
+
+  if (!order) {
+    resultDiv.innerHTML = "<p style='color:red;'>Order not found. Please check details.</p>";
+    return;
+  }
+
+  let timeInfo = "";
+
+  if (order.status === "Pending" || order.status === "Ordered") {
+    timeInfo = `<b>Ordered At:</b> ${order.placedAt || "N/A"}`;
+  }
+
+  if (order.status === "Dispatched") {
+    timeInfo = `
+      <b>Ordered At:</b> ${order.placedAt || "N/A"}<br>
+      <b>Dispatched At:</b> ${order.dispatchedAt || "N/A"}
+    `;
+  }
+
+  if (order.status === "Delivered") {
+    timeInfo = `
+      <b>Ordered At:</b> ${order.placedAt || "N/A"}<br>
+      <b>Dispatched At:</b> ${order.dispatchedAt || "N/A"}<br>
+      <b>Delivered At:</b> ${order.deliveredAt || "N/A"}
+    `;
+  }
+
+  if (order.status === "Cancelled") {
+    timeInfo = `
+      <b>Ordered At:</b> ${order.placedAt || "N/A"}<br>
+      <b>Cancelled At:</b> ${order.cancelledAt || "N/A"}
+    `;
+  }
+
+  let cancelBtn = "";
+
+if (order.status === "Pending" || order.status === "Ordered") {
+  cancelBtn = `
+    <button
+      style="
+        margin-top:15px;
+        background:#d9534f;
+        width:100%;
+        padding:14px;
+        color:#fff;
+        border:none;
+        border-radius:30px;
+        font-size:18px;
+        cursor:pointer;
+      "
+      onclick="showCancelModal('${order.orderId}')">
+      Cancel Order
+    </button>
+  `;
+}
+
+
+resultDiv.innerHTML = `
+  <p><b>Order ID:</b> ${order.orderId}</p>
+  <p><b>Status:</b> <span class="status ${order.status}">${order.status}</span></p>
+  <p>${timeInfo}</p>
+  ${cancelBtn}
+`;
+let selectedOrderId = null;
+
+function showCancelModal(orderId) {
+  selectedOrderId = orderId;
+  document.getElementById("confirmModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("confirmModal").style.display = "none";
+}
+
+function confirmCancel() {
+  closeModal();
+  cancelOrder(selectedOrderId);
+}
+
+
+
+
+}
+</script>
+<script>
+function cancelOrder(orderId) {
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+  let now = new Date().toLocaleString();
+
+  let order = orders.find(o => o.orderId === orderId);
+
+  if (!order) {
+    alert("Order not found");
+    return;
+  }
+
+  if (order.status !== "Pending" && order.status !== "Ordered") {
+    alert("Order cannot be cancelled now");
+    return;
+  }
+
+ 
+
+  order.status = "Cancelled";
+  order.cancelledAt = now;
+
+  localStorage.setItem("orders", JSON.stringify(orders));
+
+  alert("Order cancelled successfully");
+  trackOrder(); // refresh view
+}
+
+let selectedOrderId = null;
+
+function showCancelModal(orderId) {
+  selectedOrderId = orderId;
+  document.getElementById("confirmModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("confirmModal").style.display = "none";
+}
+
+function confirmCancel() {
+  closeModal();
+  cancelOrder(selectedOrderId);
+}
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Cart | Crumbs & Cups</title>
+  <link rel="icon" href="ChatGPT Image Dec 31, 2025, 10_14_55 PM.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Times New Roman', Times, serif;
+      background: linear-gradient(135deg, #fff0ec, #ffeaea);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 60px;
+      background: linear-gradient(135deg, #fff0ec, #ffeaea);
+      border-bottom: 1px solid #fff0ec;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .navbar h1 {
+      font-size: 34px;
+      color: #d66b6b;
+      margin: 0;
+    }
+
+    .navbar-icons a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #7c6a61;
+      font-size: 17px;
+    }
+
+    .navbar-icons a:hover {
+      color: #fff;
+      background-color: #d66b6b;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+
+    .navbar-icons a i {
+      margin-right: 6px;
+      color: #d66b6b;
+      transition: transform 0.3s ease;
+    }
+
+    .navbar-icons a:hover i {
+      color: #fff;
+     transform: rotate(-15deg) scale(1.2);
+    }
+
+    table {
+      width: 90%;
+      margin: 40px auto;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #ffeaea;
+      color: #444;
+    }
+
+    td img {
+      width: 90px;
+      height: 120px;
+      border-radius: 10px;
+      border: 2px solid #f3cfcf;
+    }
+
+    #total {
+      width: 90%;
+      margin: 20px auto;
+      text-align: right;
+      font-size: 20px;
+      color: #333;
+      padding-top: 10px;
+      border-top: 2px solid #f3cfcf;
+    }
+
+    .checkout-btn {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 35px;
+      background-color: #d66b6b;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .checkout-btn:hover {
+      background-color: #b55555;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="navbar">
+  <h1>Crumbs & Cups</h1>
+  <div class="navbar-icons">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="track-order.html" ><i class="fas fa-location-dot"></i> Track Order</a>
+    <a href="Cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+    <a href="Contact.html"><i class="fas fa-envelope"></i> Contact</a>
+  </div>
+</div>
+
+<table id="cartTable">
+  <tr>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Qty</th>
+    <th>Remove</th>
+  </tr>
+</table>
+
+<h3 id="total"></h3>
+
+<button class="checkout-btn" onclick="window.location.href='payment.html'">
+  Proceed to Checkout
+</button>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let table = document.getElementById("cartTable");
+let total = 0;
+
+if (cart.length === 0) {
+  document.getElementById("total").innerText = "Your cart is empty";
+} else {
+  cart.forEach((item, index) => {
+    let row = table.insertRow();
+    row.innerHTML = `
+      <td><img src="${item.image}"></td>
+      <td>${item.name}</td>
+      <td>₹${item.price}</td>
+      <td>
+        <button onclick="changeQty(${index}, -1)">−</button>
+        ${item.quantity}
+        <button onclick="changeQty(${index}, 1)">+</button>
+      </td>
+      <td><button onclick="removeItem(${index})">❌</button></td>
+    `;
+
+    total += item.price * item.quantity;
+  });
+
+  document.getElementById("total").innerText = "Total: ₹" + total;
+}
+
+function removeItem(index) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.splice(index, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  location.reload();
+}
+
+function changeQty(index, change) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  if (!cart[index]) return;
+
+  cart[index].quantity += change;
+
+  if (cart[index].quantity <= 0) {
+    cart.splice(index, 1);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  location.reload();
+}
+</script>
+<script>
+let user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+if (!user) {
+  alert("Please login to view your cart");
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
