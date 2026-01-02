@@ -621,6 +621,17 @@ function closeCartModal() {
   document.getElementById("cart-modal-overlay").classList.remove("show");
 }
 </script>
+function buyNow(name, image, price) {
+  let cart = [{
+    name: name,
+    image: image,
+    price: price,
+    quantity: 1
+  }];
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  window.location.href = "/payment.html";
+}
 
 
 </body>
