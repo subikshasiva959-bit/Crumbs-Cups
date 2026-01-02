@@ -203,10 +203,24 @@ if (orders.length === 0) {
       ? `<span class="Cancelled">Cancelled</span>`
       : `
         <select class="${order.status}" onchange="updateStatus(${index}, this.value)">
-          <option value="Pending" ${order.status === "Pending" ? "selected" : ""}>Pending</option>
-          <option value="Dispatched" ${order.status === "Dispatched" ? "selected" : ""}>Dispatched</option>
-          <option value="Delivered" ${order.status === "Delivered" ? "selected" : ""}>Delivered</option>
-        </select>
+  <option value="Pending"
+    ${order.status !== "Pending" ? "disabled" : ""}
+    ${order.status === "Pending" ? "selected" : ""}>
+    Pending
+  </option>
+
+  <option value="Dispatched"
+    ${order.status === "Delivered" ? "disabled" : ""}
+    ${order.status === "Dispatched" ? "selected" : ""}>
+    Dispatched
+  </option>
+
+  <option value="Delivered"
+    ${order.status === "Delivered" ? "selected" : ""}>
+    Delivered
+  </option>
+</select>
+
       `
   }
 </td>
