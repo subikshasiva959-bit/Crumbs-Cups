@@ -631,9 +631,12 @@ function buyNow(name, image, price) {
   }];
 
   localStorage.setItem("cart", JSON.stringify(cart));
-  window.location.href = "pages/payment.html";
+
+  // ✅ Correct for GitHub Pages
+  window.location.href = "payment.html";
 }
 </script>
+
 
 </body>
 </html>
